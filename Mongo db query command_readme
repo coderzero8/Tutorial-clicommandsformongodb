@@ -1,0 +1,146 @@
+mongo db like sql query commands
+
+> show dbs
+local  0.078GB
+> use mycustomers
+switched to db mycustomers
+> db
+mycustomers
+>
+
+db.createUser({
+	user:"coderzero8",
+	pwd:"000000",
+	roles:["readWrite","dbAdmin"]
+});
+
+db.createUser({
+	user:"coderzero",
+	pwd:"000000",
+	roles:["readWrite","dbAdmin"]
+});
+
+
+db.createCollection("customers");
+
+> db.createCollection("customers");
+{ "ok" : 1 }
+> show collections
+customers
+system.indexes
+>
+
+db.customers.insert({first_name:"John",last_name:"Doe"});
+
+db.customers.find();
+
+db.customers.insert([{first_name:"Steve",last_name:"Sm"},{first_name:"Step",last_name:"Moore",gender:"female"}]);
+
+db.customers.find().pretty();
+
+db.customers.update({first_name:"John"},{first_name:"John",last_name:"Doe",gender:"male"};
+
+db.customers.update({first_name:"John"},{$set:{gender:"female"}}); //set means do not remove other data column
+
+db.customers.update({first_name:"John"},{$set:{age:30}});
+
+db.customers.update({first_name:"John"},{$unset:{age:1}}); //remove column age
+
+db.customers.update({first_name:"Jerick"},{first_name:"Jerick",last_name:"Mangalus"},{upsert:true}); //if not exist create the object
+
+db.customers.update({first_name:"John"},{$rename:{gender:'sex'}});
+
+db.customers.remove({first_name:"Steve"}); // remove Steve
+
+db.customers.remove({first_name:"Steve"}.{justone:true});  //limit to delete 1 Steve data.
+
+db.customers.insert([
+	{
+		first_name:"ABC",
+		last_name:"Mason",
+		gender:"female",
+		age:21,
+		address:{
+			street:"432 Essex st",
+			city:"Lawrence",
+			state:"MA",
+		},
+		membership:["mem1","mem2","mem3"],
+		balance:125.32
+	},{
+		first_name:"DEF",
+		last_name:"Makons",
+		gender:"male",
+		age:5,
+		address:{
+			street:"32 Essex st",
+			city:"Lawrence",
+			state:"MA",
+		},
+		membership:["mem5","mem2","mem3"],
+		balance:520.40
+	},
+		{
+		first_name:"JKL",
+		last_name:"Mason",
+		gender:"female",
+		age:10,
+		address:{
+			street:"432 Essex st",
+			city:"Lawrence",
+			state:"MA",
+		},
+		membership:["mem1","mem2","mem3"],
+		balance:125.32
+	},{
+		first_name:"LMN",
+		last_name:"Makons",
+		gender:"male",
+		age:20,
+		address:{
+			street:"32 Essex st",
+			city:"Lawrence",
+			state:"MA",
+		},
+		membership:["mem5","mem2","mem3"],
+		balance:520.40
+	}
+]);
+
+//adding array of insert data proper array indention must be done.
+
+
+db.customers.find({$or:[{first_name:"JKL"},{first_name:"LMN"}]}); // find two names using or operator
+
+db.customers.find({age:{$lt:40}}).pretty(); // find age less than 40
+// you can also use lte gte gt ~e = equals
+
+
+db.customers.find({"address.city":"Lawrence"}).pretty();
+
+db.customers.find({membership:"mem1"});
+
+
+db.customers.find().sort({last_name:1}); //asc
+db.customers.find().sort({last_name:-1}); //desc
+db.customers.find().count();
+db.customers.find({gender:"male"}).count();
+
+db.customers.find().limit(4);
+
+db.customers.find().forEach(function(doc){print("Customer Name:"+doc.first_name)})
+
+db.customers.find().forEach(function(doc){print("Customer Name:"+doc.first_name)})
+
+Customer Name:John
+Customer Name:Steven
+Customer Name:Step
+Customer Name:Jerick
+Customer Name:Troy
+Customer Name:Troll
+Customer Name:Mark
+Customer Name:ABC
+Customer Name:DEF
+Customer Name:JKL
+Customer Name:LMN
+>

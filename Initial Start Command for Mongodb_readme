@@ -1,0 +1,39 @@
+
+Create folder Mongodb and add folder inside "data" and "log", inside data folder create "db" folder
+cd\
+
+cd mongodb\bin
+
+mongod --directoryperdb --dbpath C:\Mongodb\data\db --logpath C:\Mongodb\log\mongo.log --append --rest --install
+
+Show below 
+
+C:\Mongodb\bin>mongod --directoryperdb --dbpath C:\Mongodb\data\db --logpath C:\
+Mongodb\log\mongo.log --logappend --rest --install
+2019-01-18T13:31:31.090+0800 I CONTROL  [main] ** WARNING: --rest is specified w
+ithout --httpinterface,
+2019-01-18T13:31:31.091+0800 I CONTROL  [main] **          enabling http interfa
+ce
+2019-01-18T13:31:31.092+0800 I CONTROL  [main]
+2019-01-18T13:31:31.092+0800 W CONTROL  [main] 32-bit servers don't have journal
+ing enabled by default. Please use --journal if you want durability.
+2019-01-18T13:31:31.093+0800 I CONTROL  [main]
+
+
+C:\Mongodb\bin>mongod --directoryperdb --dbpath C:\Mongodb\data\db --logpath C:\
+Mongodb\log\mongo.log --logappend --rest --install
+2019-01-18T13:31:31.090+0800 I CONTROL  [main] ** WARNING: --rest is specified w
+ithout --httpinterface,
+2019-01-18T13:31:31.091+0800 I CONTROL  [main] **          enabling http interfa
+ce
+2019-01-18T13:31:31.092+0800 I CONTROL  [main]
+2019-01-18T13:31:31.092+0800 W CONTROL  [main] 32-bit servers don't have journal
+ing enabled by default. Please use --journal if you want durability.
+2019-01-18T13:31:31.093+0800 I CONTROL  [main]
+
+
+
+C:\Mongodb\bin>net start MongoDB
+
+The MongoDB service was started successfully.
+
